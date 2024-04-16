@@ -4,6 +4,8 @@ import time
 
 app = Flask(__name__)
 
+names = Array('28-031654c65fff' => 'Paduodamas', '28-0214630b7cff' => 'Griztamas', '28-0214633567ff' => 'Zidinys')
+
 # Function to read temperature from DS18B20 sensor
 def read_temperature(sensor):
     sensor_path = f"/sys/bus/w1/devices/{sensor}/w1_slave"
@@ -34,7 +36,7 @@ def get_temperatures():
         temperature = read_temperature(sensor_id)
         if temperature is not None:
             print(temperature)
-            temperatures.append({"sensor_name": "Sensor name", "sensor_id": sensor_id, "temperature": temperature})
+            temperatures.append({"sensor_name": names[sensor_id], "sensor_id": sensor_id, "temperature": temperature})
     return jsonify({"temperatures": temperatures})
 
 if __name__ == '__main__':
