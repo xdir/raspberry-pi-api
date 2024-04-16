@@ -26,7 +26,8 @@ def read_temperature(sensor):
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
     sensors = glob.glob("/sys/bus/w1/devices/28-*/w1_slave")
-    print('Sensors: ' + sensors)
+    print("Sensors: ")
+    print(sensors)
     temperatures = []
     for sensor in sensors:
         sensor_id = sensor.split("/")[5]
