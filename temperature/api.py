@@ -4,7 +4,9 @@ import time
 
 app = Flask(__name__)
 
-names = Array('28-031654c65fff' => 'Paduodamas', '28-0214630b7cff' => 'Griztamas', '28-0214633567ff' => 'Zidinys')
+names['28-031654c65fff'] = 'Paduodamas'
+names['28-0214630b7cff'] = 'Griztamas'
+names['28-0214633567ff'] = 'Zidinys'
 
 # Function to read temperature from DS18B20 sensor
 def read_temperature(sensor):
