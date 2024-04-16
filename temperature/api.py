@@ -34,7 +34,7 @@ def get_temperatures():
         temperature = read_temperature(sensor_id)
         if temperature is not None:
             print(temperature)
-            temperatures.append({"sensor_id": sensor_id, "temperature": temperature})
+            temperatures.append({"sensor_name": "Sensor name", "sensor_id": sensor_id, "temperature": temperature})
     return jsonify({"temperatures": temperatures})
 
 if __name__ == '__main__':
