@@ -31,7 +31,7 @@ def read_temperature(sensor):
 # Endpoint to get temperatures from all sensors
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
-    start = time.timeit()
+    start = time.time()
     sensors = glob.glob("/sys/bus/w1/devices/28-*/w1_slave")
     print("Sensors: ")
     print(sensors)
@@ -42,7 +42,7 @@ def get_temperatures():
         if temperature is not None:
             print(temperature)
             temperatures.append({"sensor_name": names[sensor_id], "sensor_id": sensor_id, "temperature": temperature})
-    end = time.timeit()
+    end = time.time()
     print("Time: ")
     print(end - start)
     return jsonify({"temperatures": temperatures})
