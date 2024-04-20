@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
-import glob
-import time
+from w1thermsensor import W1ThermSensor, Unit, SensorResolutionError
 
 app = Flask(__name__)
 
@@ -10,41 +9,31 @@ names = {
     '28-0214633567ff': 'Zidinys'
 }
 
-# Function to read temperature from DS18B20 sensor
+# Function to read temperature from DS18B20 sensor using w1thermsensor
 def read_temperature(sensor):
-    sensor_path = f"/sys/bus/w1/devices/{sensor}/w1_slave"
     try:
-        with open(sensor_path, 'r') as file:
-            lines = file.readlines()
-            while lines[0].strip()[-3:] != 'YES':
-                time.sleep(0.2)
-                lines = file.readlines()
-            equals_pos = lines[1].find('t=')
-            if equals_pos != -1:
-                temp_string = lines[1][equals_pos+2:]
-                temp_c = float(temp_string) / 1000.0
-                return round(temp_c, 1)  # Precision up to 0.1 degrees
+        sensor.set_resolution(10, persist=False)  # Set resolution to 10 bits, not persisting between reboots
+        temperature = sensor.get_temperature(Unit.DEGREES_C)
+        return round(temperature, 1)  # Precision up to 0.1 degrees
+    except SensorResolutionError as e:
+        print(f"Error setting resolution for sensor {sensor.id}: {e}")
     except Exception as e:
-        print(f"Error reading sensor {sensor}: {e}")
+        print(f"Error reading sensor {sensor.id}: {e}")
     return None
 
 # Endpoint to get temperatures from all sensors
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
-    start = time.time()
-    sensors = glob.glob("/sys/bus/w1/devices/28-*/w1_slave")
-    print("Sensors: ")
-    print(sensors)
     temperatures = []
-    for sensor in sensors:
-        sensor_id = sensor.split("/")[5]
-        temperature = read_temperature(sensor_id)
+    for sensor in W1ThermSensor.get_available_sensors():
+        temperature = read_temperature(sensor)
         if temperature is not None:
-            print(temperature)
-            temperatures.append({"sensor_name": names[sensor_id], "sensor_id": sensor_id, "temperature": temperature})
-    end = time.time()
-    print("Time: ")
-    print(end - start)
+            sensor_id = sensor.id
+            temperatures.append({
+                "sensor_name": names.get(sensor_id, "Unknown Sensor"),
+                "sensor_id": sensor_id,
+                "temperature": temperature
+            })
     return jsonify({"temperatures": temperatures})
 
 if __name__ == '__main__':
