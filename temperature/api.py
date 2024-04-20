@@ -4,9 +4,9 @@ from w1thermsensor import W1ThermSensor, Unit
 app = Flask(__name__)
 
 names = {
-    '28-031654c65fff': 'Paduodamas',
-    '28-0214630b7cff': 'Griztamas',
-    '28-0214633567ff': 'Zidinys'
+    '031654c65fff': 'Paduodamas', # 28-031654c65fff
+    '0214630b7cff': 'Griztamas', # 28-0214630b7cff
+    '0214633567ff': 'Zidinys' # 28-0214633567ff
 }
 
 # Function to read temperature from DS18B20 sensor using w1thermsensor
