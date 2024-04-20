@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from w1thermsensor import W1ThermSensor, Unit
+import time
 
 app = Flask(__name__)
 
@@ -22,6 +23,7 @@ def read_temperature(sensor):
 # Endpoint to get temperatures from all sensors
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
+    start = time.time()
     temperatures = []
     for sensor in W1ThermSensor.get_available_sensors():
         temperature = read_temperature(sensor)
@@ -32,6 +34,9 @@ def get_temperatures():
                 "sensor_id": sensor_id,
                 "temperature": temperature
             })
+    print("hello")
+    t = time.time() - start
+    print(f"Elapsed time: {t} ms.")
     return jsonify({"temperatures": temperatures})
 
 if __name__ == '__main__':
