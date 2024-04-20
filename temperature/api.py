@@ -34,7 +34,7 @@ def get_temperatures():
                 "sensor_id": sensor_id,
                 "temperature": temperature
             })
-    t = (time.time() - start) / 1000
+    t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
     return jsonify({"temperatures": temperatures})
 
