@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
 import glob
 import time
-import timeit
 
 app = Flask(__name__)
 
@@ -32,7 +31,7 @@ def read_temperature(sensor):
 # Endpoint to get temperatures from all sensors
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
-    start = timeit.timeit()
+    start = time.timeit()
     sensors = glob.glob("/sys/bus/w1/devices/28-*/w1_slave")
     print("Sensors: ")
     print(sensors)
@@ -43,7 +42,7 @@ def get_temperatures():
         if temperature is not None:
             print(temperature)
             temperatures.append({"sensor_name": names[sensor_id], "sensor_id": sensor_id, "temperature": temperature})
-    end = timeit.timeit()
+    end = time.timeit()
     print("Time: ")
     print(end - start)
     return jsonify({"temperatures": temperatures})
