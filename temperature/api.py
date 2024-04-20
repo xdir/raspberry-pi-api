@@ -3,7 +3,7 @@ from w1thermsensor import W1ThermSensor, Unit
 
 app = Flask(__name__)
 
-def names = {
+names = {
     '28-031654c65fff': 'Paduodamas',
     '28-0214630b7cff': 'Griztamas',
     '28-0214633567ff': 'Zidinys'
