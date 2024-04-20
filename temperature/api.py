@@ -15,7 +15,7 @@ def read_temperature(sensor):
     try:
         # sensor.set_resolution(10, persist=False)  # Set resolution to 10 bits, not persisting between reboots
         temperature = sensor.get_temperature(Unit.DEGREES_C)
-        return round(temperature, 1)  # Precision up to 0.1 degrees
+        return round(temperature, 5)  # Precision up to 0.1 degrees
     except Exception as e:
         print(f"Error reading sensor {sensor.id}: {e}")
     return None
