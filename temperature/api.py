@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from w1thermsensor import W1ThermSensor, Unit, SensorResolutionError
+from w1thermsensor import W1ThermSensor, Unit
 
 app = Flask(__name__)
 
@@ -15,8 +15,6 @@ def read_temperature(sensor):
         sensor.set_resolution(10, persist=False)  # Set resolution to 10 bits, not persisting between reboots
         temperature = sensor.get_temperature(Unit.DEGREES_C)
         return round(temperature, 1)  # Precision up to 0.1 degrees
-    except SensorResolutionError as e:
-        print(f"Error setting resolution for sensor {sensor.id}: {e}")
     except Exception as e:
         print(f"Error reading sensor {sensor.id}: {e}")
     return None
