@@ -38,7 +38,9 @@ def get_temperatures():
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
 
-    tmp = temperatures.get("Gryztamas", {}).get("temperature", "No data available")
+    gryztamas_tmp = temperatures.get("Gryztamas", {}).get("temperature", "Nera duomenu")
+    paduodamas_tmp = temperatures.get("Paduodamas", {}).get("temperature", "Nera duomenu")
+    zidinys_tmp = temperatures.get("Zidinys", {}).get("temperature", "Nera duomenu")
     return f"""
         <html>
             <head>
@@ -46,8 +48,10 @@ def get_temperatures():
                 <meta http-equiv="refresh" content="1">
             </head>
             <body>
-                <h1>Hello, World!</h1>
-                <p>{tmp}</p>
+                <h1>Temperaturos: </h1>
+                <p>Zidinys: {zidinys_tmp} C°</p>
+                <p>Paduodamas i grindis: {paduodamas_tmp} C°</p>
+                <p>Gryztamas is grindu: {gryztamas_tmp} C°</p>
             </body>
         </html>
     """
