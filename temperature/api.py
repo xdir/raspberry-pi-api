@@ -48,10 +48,15 @@ def get_temperatures():
                 <meta http-equiv="refresh" content="1">
             </head>
             <body>
-                <h1>Temperaturos: </h1>
-                <h1>Zidinys: {zidinys_tmp} C°</h1>
-                <h1>Paduodamas i grindis: {paduodamas_tmp} C°</h1>
-                <h1>Gryztamas is grindu: {gryztamas_tmp} C°</h1>
+                <div style="font-size: 50px;">
+                    Temperaturos
+                </div>
+                <div style="font-size: 50px;">
+                    <div>Zidinys: {zidinys_tmp} C°</div>
+                    <div>Paduodamas i grindis: {paduodamas_tmp} C°</div>
+                    <div>Gryztamas is grindu: {gryztamas_tmp} C°</div>
+                </div>
+
             </body>
         </html>
     """
