@@ -38,6 +38,7 @@ def get_temperatures():
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
 
+    tmp = temperature["Gryztamas"]["temperature"]
     return f"""
         <html>
             <head>
@@ -46,7 +47,7 @@ def get_temperatures():
             </head>
             <body>
                 <h1>Hello, World!</h1>
-                <p>{temperature["Gryztamas"]["temperature"]}</p>
+                <p>{tmp}</p>
             </body>
         </html>
     """
