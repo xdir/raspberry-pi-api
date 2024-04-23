@@ -21,7 +21,7 @@ def read_temperature(sensor):
     return None
 
 # Endpoint to get temperatures from all sensors
-@app.route('/temperature', methods=['GET'])
+@app.route('/temperatura', methods=['GET'])
 def get_temperatures():
     start = time.time()
     temperatures = {}
