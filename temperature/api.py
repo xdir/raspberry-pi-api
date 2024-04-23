@@ -29,13 +29,14 @@ def get_temperatures():
         temperature = read_temperature(sensor)
         if temperature is not None:
             sensor_id = sensor.id
-            temperatures.append({
+            temperatures[names.get(sensor_id, "Unknown Sensor")] = {
                 "sensor_name": names.get(sensor_id, "Unknown Sensor"),
                 "sensor_id": sensor_id,
                 "temperature": temperature
-            })
+            }
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
+
     return jsonify({"temperatures": temperatures})
 
 if __name__ == '__main__':
