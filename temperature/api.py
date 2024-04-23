@@ -38,7 +38,7 @@ def get_temperatures():
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
 
-    tmp = temperature["Gryztamas"]["temperature"]
+    tmp = temperatures.get("Gryztamas", {}).get("temperature", "No data available")
     return f"""
         <html>
             <head>
