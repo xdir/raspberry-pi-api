@@ -49,9 +49,9 @@ def get_temperatures():
             </head>
             <body>
                 <h1>Temperaturos: </h1>
-                <p>Zidinys: {zidinys_tmp} C°</p>
-                <p>Paduodamas i grindis: {paduodamas_tmp} C°</p>
-                <p>Gryztamas is grindu: {gryztamas_tmp} C°</p>
+                <h1>Zidinys: {zidinys_tmp} C°</h1>
+                <h1>Paduodamas i grindis: {paduodamas_tmp} C°</h1>
+                <h1>Gryztamas is grindu: {gryztamas_tmp} C°</h1>
             </body>
         </html>
     """
