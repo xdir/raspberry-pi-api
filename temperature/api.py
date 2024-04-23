@@ -62,4 +62,4 @@ def get_temperatures():
     """
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)  # Run the Flask app on all available network interfaces
+    app.run(host='0.0.0.0', port=80)  # Run the Flask app on all available network interfaces
