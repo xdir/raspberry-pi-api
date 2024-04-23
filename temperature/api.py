@@ -24,7 +24,7 @@ def read_temperature(sensor):
 @app.route('/temperature', methods=['GET'])
 def get_temperatures():
     start = time.time()
-    temperatures = []
+    temperatures = ["Paduodamas", "Griztamas", "Zidinys"]
     for sensor in W1ThermSensor.get_available_sensors():
         temperature = read_temperature(sensor)
         if temperature is not None:
