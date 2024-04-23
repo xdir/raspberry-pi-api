@@ -48,10 +48,10 @@ def get_temperatures():
                 <meta http-equiv="refresh" content="1">
             </head>
             <body>
-                <div style="font-size: 50px; text-align: center; margin-top: 100px;">
+                <div style="font-size: 60px; text-align: center; margin-top: 100px;">
                     Temperaturos
                 </div>
-                <div style="font-size: 45px; border: 3px solid red; margin-top: 100px; padding: 10px">
+                <div style="font-size: 48px; border: 3px solid red; margin-top: 100px; padding: 10px">
                     <div style="margin-top: 50px;">Zidinys: <span style="font-weight: bold;">{zidinys_tmp} C°</span></div>
                     <div style="margin-top: 50px;">Paduodamas i grindis: <span style="font-weight: bold;">{paduodamas_tmp} C°</span></div>
                     <div style="margin-top: 50px; margin-bottom: 50px;">Gryztamas is grindu: <span style="font-weight: bold;">{gryztamas_tmp} C°</span></div>
