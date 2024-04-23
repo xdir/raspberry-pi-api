@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 names = {
     '031654c65fff': 'Paduodamas', # 28-031654c65fff
-    '0214630b7cff': 'Griztamas', # 28-0214630b7cff
+    '0214630b7cff': 'Gryztamas', # 28-0214630b7cff
     '0214633567ff': 'Zidinys' # 28-0214633567ff
 }
 
