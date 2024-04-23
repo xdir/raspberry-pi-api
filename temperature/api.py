@@ -38,7 +38,18 @@ def get_temperatures():
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
 
-    return jsonify({"temperatures": temperatures})
+    return "
+        <html>
+            <head>
+                <title>Temperatura</title>
+                <meta http-equiv="refresh" content="1">
+            </head>
+            <body>
+                <h1>Hello, World!</h1>
+                <p>{temperature["Gryztamas"]["temperature"]}</p>
+            </body>
+        </html>
+    "
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)  # Run the Flask app on all available network interfaces
