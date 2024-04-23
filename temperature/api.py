@@ -38,7 +38,7 @@ def get_temperatures():
     t = (int)((time.time() - start) * 1000)
     print(f"Elapsed time: {t} ms.")
 
-    return "
+    return f"""
         <html>
             <head>
                 <title>Temperatura</title>
@@ -49,7 +49,7 @@ def get_temperatures():
                 <p>{temperature["Gryztamas"]["temperature"]}</p>
             </body>
         </html>
-    "
+    """
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)  # Run the Flask app on all available network interfaces
