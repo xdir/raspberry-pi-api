@@ -7,7 +7,7 @@ app = Flask(__name__)
 names = {
     '031654c65fff': 'Paduodamas', # 28-031654c65fff
     '0214630b7cff': 'Gryztamas', # 28-0214630b7cff
-    '0214633567ff': 'Zidinys' # 28-0214633567ff
+    '00000f9c3848': 'Zidinys' # 28-00000f9c3848
 }
 
 # Function to read temperature from DS18B20 sensor using w1thermsensor
