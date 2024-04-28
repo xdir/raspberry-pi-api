@@ -26,6 +26,7 @@ def get_temperatures():
     start = time.time()
     temperatures = {}
     for sensor in W1ThermSensor.get_available_sensors():
+        print(sensor)
         temperature = read_temperature(sensor)
         if temperature is not None:
             sensor_id = sensor.id
