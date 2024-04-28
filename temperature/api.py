@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from w1thermsensor import W1ThermSensor, Unit
 import time
-import sensor_map
+from sensor_map import names
 
 app = Flask(__name__)
 
