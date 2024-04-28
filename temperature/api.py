@@ -1,14 +1,11 @@
 from flask import Flask, jsonify
 from w1thermsensor import W1ThermSensor, Unit
 import time
+import sensor_map
 
 app = Flask(__name__)
 
-names = {
-    '031654c65fff': 'Paduodamas', # 28-031654c65fff
-    '0214630b7cff': 'Gryztamas', # 28-0214630b7cff
-    '00000f9c3848': 'Zidinys' # 28-00000f9c3848
-}
+
 
 # Function to read temperature from DS18B20 sensor using w1thermsensor
 def read_temperature(sensor):
@@ -26,7 +23,6 @@ def get_temperatures():
     start = time.time()
     temperatures = {}
     for sensor in W1ThermSensor.get_available_sensors():
-        # sensor.set_resolution(12)
         print(sensor)
         temperature = read_temperature(sensor)
         if temperature is not None:
