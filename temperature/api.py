@@ -31,19 +31,22 @@ def process_sensor(sensor):
         sensor_id = temperature_data['sensor_id']
         temperature = temperature_data['temperature']
         name = names.get(sensor_id, "Unknown Sensor")
+        elapsed_time = int((time.time() - start) * 1000)
+        print(f"Time: {elapsed_time} ms.")
         return {
             "sensor_name": name,
             "sensor_id": sensor_id,
             "temperature": temperature
         }
     else:
+        elapsed_time = int((time.time() - start) * 1000)
+        print(f"Time: {elapsed_time} ms.")
         return {
             "sensor_name": names.get(temperature_data['sensor_id'], "Unknown Sensor"),
             "sensor_id": temperature_data['sensor_id'],
             "error": temperature_data.get('error', 'Unknown error')
         }
-    elapsed_time = int((time.time() - start) * 1000)
-    print(f"Time: {elapsed_time} ms.")
+
 
 # Endpoint to get temperatures from all sensors
 @app.route('/temperatura', methods=['GET'])
