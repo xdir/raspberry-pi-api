@@ -25,6 +25,7 @@ def read_temperature(sensor):
 
 # Function to process each sensor and collect temperature
 def process_sensor(sensor):
+    start = time.time()
     temperature_data = read_temperature(sensor)
     if temperature_data and 'temperature' in temperature_data:  # Ensure 'temperature' key exists
         sensor_id = temperature_data['sensor_id']
@@ -41,6 +42,8 @@ def process_sensor(sensor):
             "sensor_id": temperature_data['sensor_id'],
             "error": temperature_data.get('error', 'Unknown error')
         }
+    elapsed_time = int((time.time() - start) * 1000)
+    print(f"Time: {elapsed_time} ms.")
 
 # Endpoint to get temperatures from all sensors
 @app.route('/temperatura', methods=['GET'])
