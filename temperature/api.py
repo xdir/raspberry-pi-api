@@ -18,6 +18,20 @@ def read_temperature(sensor):
         print(f"Error reading sensor {sensor.id}: {e}")
     return None
 
+# Function to process each sensor and collect temperature
+def process_sensor(sensor):
+    temperature_data = read_temperature(sensor)
+    if temperature_data:
+        sensor_id = temperature_data['sensor_id']
+        temperature = temperature_data['temperature']
+        name = names.get(sensor_id, "Unknown Sensor")
+        return {
+            "sensor_name": name,
+            "sensor_id": sensor_id,
+            "temperature": temperature
+        }
+    return None
+
 # Endpoint to get temperatures from all sensors
 @app.route('/temperatura', methods=['GET'])
 def get_temperatures():
