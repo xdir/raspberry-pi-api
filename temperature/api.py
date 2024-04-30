@@ -11,17 +11,22 @@ app = Flask(__name__)
 # Function to read temperature from DS18B20 sensor using w1thermsensor
 def read_temperature(sensor):
     try:
-        # sensor.set_resolution(10, persist=False)  # Set resolution to 10 bits, not persisting between reboots
         temperature = sensor.get_temperature(Unit.DEGREES_C)
-        return round(temperature, 5)  # Precision up to 0.1 degrees
+        return {
+            "sensor_id": sensor.id,
+            "temperature": round(temperature, 5)  # Precision up to 0.1 degrees
+        }
     except Exception as e:
         print(f"Error reading sensor {sensor.id}: {e}")
-    return None
+        return {
+            "sensor_id": sensor.id,
+            "error": str(e)
+        }
 
 # Function to process each sensor and collect temperature
 def process_sensor(sensor):
     temperature_data = read_temperature(sensor)
-    if temperature_data:
+    if temperature_data and 'temperature' in temperature_data:  # Ensure 'temperature' key exists
         sensor_id = temperature_data['sensor_id']
         temperature = temperature_data['temperature']
         name = names.get(sensor_id, "Unknown Sensor")
@@ -30,7 +35,12 @@ def process_sensor(sensor):
             "sensor_id": sensor_id,
             "temperature": temperature
         }
-    return None
+    else:
+        return {
+            "sensor_name": names.get(temperature_data['sensor_id'], "Unknown Sensor"),
+            "sensor_id": temperature_data['sensor_id'],
+            "error": temperature_data.get('error', 'Unknown error')
+        }
 
 # Endpoint to get temperatures from all sensors
 @app.route('/temperatura', methods=['GET'])
