@@ -32,7 +32,7 @@ def process_sensor(sensor):
         temperature = temperature_data['temperature']
         name = names.get(sensor_id, "Unknown Sensor")
         elapsed_time = int((time.time() - start) * 1000)
-        print(f"Time: {elapsed_time} ms.")
+        print(f"Time {sensor_id}: {elapsed_time} ms.")
         return {
             "sensor_name": name,
             "sensor_id": sensor_id,
