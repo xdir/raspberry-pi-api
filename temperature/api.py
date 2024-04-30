@@ -37,19 +37,14 @@ def process_sensor(sensor):
 def get_temperatures():
     start = time.time()
     temperatures = {}
-    for sensor in W1ThermSensor.get_available_sensors():
-        print(sensor)
-        temperature = read_temperature(sensor)
-        if temperature is not None:
-            sensor_id = sensor.id
-            name = names.get(sensor_id, "Unknown Sensor")
-            temperatures[name] = {
-                "sensor_name": name,
-                "sensor_id": sensor_id,
-                "temperature": temperature
-            }
-    t = (int)((time.time() - start) * 1000)
-    print(f"Elapsed time: {t} ms.")
+    sensors = W1ThermSensor.get_available_sensors()
+    with ThreadPoolExecutor() as executor:
+        results = executor.map(process_sensor, sensors)
+    for result in results:
+        if result:
+            temperatures[result['sensor_name']] = result
+    elapsed_time = int((time.time() - start) * 1000)
+    print(f"Elapsed time: {elapsed_time} ms.")
 
     gryztamas_tmp = temperatures.get("Gryztamas", {}).get("temperature", "Nera duomenu")
     paduodamas_tmp = temperatures.get("Paduodamas", {}).get("temperature", "Nera duomenu")
