@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from w1thermsensor import W1ThermSensor, Unit
 import time
 from sensor_map import names
+from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
 
