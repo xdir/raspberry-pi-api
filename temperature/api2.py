@@ -10,6 +10,8 @@ sensor_data = {}
 
 # Fetch all connected sensor IDs of type DS18B20 at startup
 sensor_ids = [sensor.id for sensor in W1ThermSensor.get_available_sensors([Sensor.DS18B20])]
+print("Available sensors: ")
+print(sensor_ids)
 
 # Function to continuously read temperature
 def update_sensor_readings():
